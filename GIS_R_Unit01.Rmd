@@ -145,6 +145,8 @@ in subsequent chapters. This book uses sf and terra packages to work with vector
 data and raster datasets, respectively.
 
 
+
+
 ### Section 2.1 Vector Data
 The geographic vector data model is based on points located within a coordinate 
 reference system (CRS). Points can represent self-standing features (e.g., the l
