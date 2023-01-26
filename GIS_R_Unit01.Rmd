@@ -252,12 +252,13 @@ fully supported by the R package sf (Pebesma 2018).
 #vignette("sf1")          
 # an introduction to the package
 ```
-#### Section 2.2.2 Putting Them in One Code Block for Vector Data
+#### Section 2.2.2 More on SF packages
 
-Combine our previous code, and add some more sf functions for demo purposes.
-The following code blocks records and test the whol section 2.1 
+Here we combine our previous code blocks, and add some more sf functions for 
+demo purposes. The following code blocks records and test the whol section 2.1 
 
-We need to load the dataframe object [world](https://cran.r-project.org/web/packages/spData/spData.pdf) from spData,
+We need to load the dataframe object 
+[world](https://cran.r-project.org/web/packages/spData/spData.pdf) from spData,
 rather than sf, loading fron sf with method `ne_countries` does not include the 
 columns that we need.
 
@@ -283,7 +284,13 @@ plot(world)
 summary(world["lifeExp"])
 
 ```
-Although we have only selected one variable for the summary() command, it also outputs a report on the geometry. This demonstrates the ‘sticky’ behavior of the geometry columns of sf objects, meaning the geometry is kept unless the user deliberately removes them, as we’ll see in Section 3.2. The result provides a quick summary of both the non-spatial and spatial data contained in world: the mean average life expectancy is 71 years (ranging from less than 51 to more than 83 years with a median of 73 years) across all countries.
+Although we have only selected one variable for the summary() command, it also 
+outputs a report on the geometry. This demonstrates the ‘sticky’ behavior of the 
+geometry columns of sf objects, meaning the geometry is kept unless the user 
+deliberately removes them, as we’ll see in Section 3.2. The result provides a 
+quick summary of both the non-spatial and spatial data contained in world: the 
+mean average life expectancy is 71 years (ranging from less than 51 to more than 
+83 years with a median of 73 years) across all countries.
 
 
 ```{r echo= TRUE, error=TRUE}
@@ -291,15 +298,39 @@ Although we have only selected one variable for the summary() command, it also o
 summary(world["lifeExp"])
 ```
 
+#### Section 2.2.3 Simple Features
+
+SF objects are like a data frame for spatial data. They are easy to subset.
+
+
+The code below shows how to returen an object containing only the first 2 rows 
+and first three columns of the object 'world' which we have defined previously.
+The output includes geo metadata: Geometry type, Dimension, Bounding box and 
+coordinate reference system information on the line beginning Geodetic CRS CRS 
+information.
+It also contains a grometry column named geom here.
+
+```{r echo= TRUE, error=TRUE}
+
+world_mini = world[1:2, 1:3]
+world_mini
+```
+
+
+```{r echo= TRUE, error=TRUE}
+
+world$geom
+```
 
 
 
+#### Section 2.2.4 Geometry Tpyes
 
 
+```{r echo= TRUE, error=TRUE}
 
-
-
-
+world$geom
+```
 
 
 
