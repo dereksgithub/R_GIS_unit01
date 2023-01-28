@@ -233,7 +233,7 @@ centroids on data with a projected CRS, covered in Chapter 5
 package, covered in Section 2.2.9 below and in Chapter 7
 
 
-#### Section 2.1.1 Simple Features
+### Section 2.2 Simple Features
 
 
 
@@ -252,7 +252,7 @@ fully supported by the R package sf (Pebesma 2018).
 #vignette("sf1")          
 # an introduction to the package
 ```
-#### Section 2.2.2 More on SF packages
+#### Section 2.2.1 More on SF packages
 
 Here we combine our previous code blocks, and add some more sf functions for 
 demo purposes. The following code blocks records and test the whol section 2.1 
@@ -298,7 +298,7 @@ mean average life expectancy is 71 years (ranging from less than 51 to more than
 summary(world["lifeExp"])
 ```
 
-#### Section 2.2.3 Simple Features
+#### Section 2.2.2 Data Types with Simple Features
 
 SF objects are like a data frame for spatial data. They are easy to subset.
 
@@ -364,6 +364,10 @@ world$geom
 ```
 
 
+#### Section 2.2.5 
 
 
+
+
+#### Section 2.2.6
 
