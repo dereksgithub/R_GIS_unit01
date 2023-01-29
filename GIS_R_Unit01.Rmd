@@ -252,7 +252,7 @@ fully supported by the R package sf (Pebesma 2018).
 #vignette("sf1")          
 # an introduction to the package
 ```
-#### Section 2.2.1 More on SF packages
+#### Sub-Section 2.2.1 More on SF packages
 
 Here we combine our previous code blocks, and add some more sf functions for 
 demo purposes. The following code blocks records and test the whol section 2.1 
@@ -298,7 +298,7 @@ mean average life expectancy is 71 years (ranging from less than 51 to more than
 summary(world["lifeExp"])
 ```
 
-#### Section 2.2.2 Data Types with Simple Features
+#### Sub-Section 2.2.2 Data Types with Simple Features
 
 SF objects are like a data frame for spatial data. They are easy to subset.
 
@@ -354,20 +354,36 @@ class(world_tbl)
 ```
 
 
+__Note:__ GDAL information: Provides bindings to the 'Geospatial' Data Abstraction
+Library ('GDAL') (>= 1.11.4) and access to projection/transformation operations 
+from the 'PROJ' library. Please note that 'rgdal' will be retired by the end of 
+2023, plan transition to sf/stars/'terra' functions using 'GDAL' and 'PROJ' at 
+your earliest convenience.
 
-#### Section 2.2.4 Geometry Tpyes
+
+
+#### Sub-Section 2.2.4 SF Geometry Tpyes
 
 
 ```{r echo= TRUE, error=TRUE}
-
 world$geom
 ```
 
 
-#### Section 2.2.5 
+#### Sub-Section 2.2.5 
 
 
 
 
-#### Section 2.2.6
+#### Sub-Section 2.2.6
+
+
+
+
+### Section 2.3
+
+
+
+
+## Section 3
 
