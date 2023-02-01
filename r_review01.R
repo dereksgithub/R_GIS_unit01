@@ -1,26 +1,42 @@
 # This is a short script for R basics, part 1
 ################################ Notes for VCS: ############################
 # push: git push -u origin main
+# 
 # Reset connections: git config http.postBuffer 524288000
 # The above reset command can help when errno10054 pops up. 
-################################ Notes for VCS: ############################
+# 
+# pull:
+# 
+# rebase:
+############################################################################
 
+# R packages:
 # Pt1: tidyverse (dplyr, ggplot2...)
 
 # load the packages needed:
 library(sf)
+library(sp)
 library(tidyverse)
 library(terra)   
 library(spData)        # load geographic data
 library(spDataLarge)
 library(rgeos)
 library(rnaturalearth)
-# push: git push -u origin main
-# Reset connections: git config http.postBuffer 524288000
-# The above reset command can help when errno10054 pops up. 
+library(spatstat)
 
+#
 
+# in total, there are 10 atrributes for world:
+plot(world[9]) # plot(world[1:10], max.plot = 10)
+plot(world["pop"]) # which is equivalent to plot(world[10])
 
+# combine all asian countries into one feature, and plot all of them in red 
+world_asia = world[world$continent == "Asia", ]
+asia = st_union(world_asia)
+plot(world["pop"], reset = FALSE)
+plot(asia, add = TRUE, col = "red")
+
+# 
 
 
 # Load the data:
@@ -38,7 +54,13 @@ class(world_dfr)
 class(world_tbl)
 #> [1] "sf"         "tbl_df"     "tbl"        "data.frame"
 # Check the titles
+plot(world[3:6])
+plot(world["pop"])
 
+
+chn= world[world$name_long == "China", ]
+plot(st_geometry(chn), expandBB = c(0, 0.2, 0.1, 1), col = "gray", lwd = 3)
+plot(st_geometry(world_asia), add = TRUE)
 
 # Pre-processing
 
