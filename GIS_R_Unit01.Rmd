@@ -24,7 +24,11 @@ online resources:
 
 4. [This is the code book that I am following](https://geocompr.robinlovelace.net/spatial-class.html#intro-sf)
 
-[]()
+5. [Rstudio git/vcs instructions](https://www.youtube.com/watch?v=sxErFMF7BJY)
+
+6. []()
+
+7. []()
 
 Most of the contents cited for this course note are created under the MIT 
 creative commons license. Please send messages via GitHub in case
