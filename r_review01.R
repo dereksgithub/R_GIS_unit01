@@ -4,6 +4,8 @@
 # 
 # Reset connections: git config http.postBuffer 524288000
 # The above reset command can help when errno10054 pops up. 
+# or this:
+# git config http.postBuffer 5000000000
 # 
 # pull:
 # 
