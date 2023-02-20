@@ -27,7 +27,6 @@ library(rnaturalearth)
 library(spatstat)
 
 #
-
 # in total, there are 10 atrributes for world:
 plot(world[9]) # plot(world[1:10], max.plot = 10)
 plot(world["pop"]) # which is equivalent to plot(world[10])
