@@ -1,5 +1,5 @@
 # This is a short script for R basics, part 1
-################################ Notes for VCS: ############################
+# Note for VCS ------------------------------------------------------------
 # push: git push -u origin main
 # 
 # Reset connections: git config http.postBuffer 524288000
@@ -10,10 +10,13 @@
 # pull:
 # 
 # rebase:
-############################################################################
+# -------------------------------------------------------------------------
 
 # R packages:
 # Pt1: tidyverse (dplyr, ggplot2...)
+
+
+
 
 # load the packages needed:
 library(sf)

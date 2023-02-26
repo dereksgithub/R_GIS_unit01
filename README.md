@@ -10,3 +10,12 @@ and reviewing.
 Section 1 will be R packages review.
 
 Section 2 describes R-sf data models.
+
+Also included are some simple r scripts, in several r files:
+
+visualization_prac: is dedicated for my review on r visualization packages, including:
+ggplot2, echarts4r, etc.
+
+r_review: this one focuses on tidyverse and other r data wrangling techniques.
+
+

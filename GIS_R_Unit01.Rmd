@@ -1,81 +1,67 @@
----
+------------------------------------------------------------------------
 
-title: R_GIS_01
-author: Derek Ding
-date: "`r Sys.Date()`"
-output:
-  html_document:
-    code_folding: show
+title: R_GIS_01 author: Derek Ding date: "`r Sys.Date()`" output: html_document: code_folding: show
 
----
+------------------------------------------------------------------------
 
 # Learning Notes for R_GIS Chapter 1
-This is the first chapter of the notes for using R to process and analyze GIS 
-data. There aretwo components in this first chapter of the series of notes: 
-rmd review and R-GIS introduction. Most of the contents are from the following 
-online resources:
 
+This is the first chapter of the notes for using R to process and analyze GIS data. There aretwo components in this first chapter of the series of notes: rmd review and R-GIS introduction. Most of the contents are from the following online resources:
 
-1. [Fixing the RTools Error Message in R](https://www.youtube.com/watch?v=KsbTXYKrocQ)
+1.  [Fixing the RTools Error Message in R](https://www.youtube.com/watch?v=KsbTXYKrocQ)
 
-2. [Best practices for reporting with R markdown](https://appsilon.com/r-markdown-reporting-best-practices/)
+2.  [Best practices for reporting with R markdown](https://appsilon.com/r-markdown-reporting-best-practices/)
 
-3. [YAML in RMD](https://zsmith27.github.io/rmarkdown_crash-course/lesson-4-yaml-headers.html)
+3.  [YAML in RMD](https://zsmith27.github.io/rmarkdown_crash-course/lesson-4-yaml-headers.html)
 
-4. [This is the code book that I am following](https://geocompr.robinlovelace.net/spatial-class.html#intro-sf)
+4.  [This is the code book that I am following](https://geocompr.robinlovelace.net/spatial-class.html#intro-sf)
 
-5. [Rstudio git/vcs instructions](https://www.youtube.com/watch?v=sxErFMF7BJY)
+5.  [Rstudio git/vcs instructions](https://www.youtube.com/watch?v=sxErFMF7BJY)
 
-6. []()
+6.  
 
-7. []()
+7.  
 
-Most of the contents cited for this course note are created under the MIT 
-creative commons license. Please send messages via GitHub in case
-of any potential IP violations. Many thanks to the active members of the 
-R-GIS online communities! 
+Most of the contents cited for this course note are created under the MIT creative commons license. Please send messages via GitHub in case of any potential IP violations. Many thanks to the active members of the R-GIS online communities!
 
 Now, let's begin our journey!
 
 ## Pre-start: rmd quick review and walk through
-1. Specifying a file dir path in rmd:use 
- `D:\Downloads`
 
-2. add links in rmd:
+1.  Specifying a file dir path in rmd:use `D:\Downloads`
 
-3. Hierarchical bullet points:
-* un-ordered list
-  + sub-item 1 
-  + sub-item 2 
-    - sub-sub-item 1
-    
-4. __Bold__ and **Bold**
+2.  add links in rmd:
 
-5. _Italics_ and *Italics*
+3.  Hierarchical bullet points:
 
-6. Tables:
- mid: `|:------------------:|`<br>
- left:`|:------------------|`<br>
- right:`|------------------:|`<br> Example:
- 
-| Option           | Description                                    |
+-   un-ordered list
+    -   sub-item 1
+    -   sub-item 2
+        -   sub-sub-item 1
+
+4.  **Bold** and **Bold**
+
+5.  *Italics* and *Italics*
+
+6.  Tables: mid: `|:------------------:|`<br> left:`|:------------------|`<br> right:`|------------------:|`<br> Example:
+
+| Option           |                                    Description |
 |:-----------------|-----------------------------------------------:|
-| `rows.print`     | Maximum rows to print per page.                |
-| `max.print`      | Maximum rows in the table (defaults to 1000).  |
+| `rows.print`     |                Maximum rows to print per page. |
+| `max.print`      |  Maximum rows in the table (defaults to 1000). |
 | `cols.print`     | Maximum columns in the table (defaults to 10). |
-| `rownames.print` | Print row names as part of the table.          |
+| `rownames.print` |          Print row names as part of the table. |
 
-7. New line: `<br>` <br>
+7.  New line: `<br>` <br>
 
-8. More on:
-[rmd Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
-
+8.  More on: [rmd Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
 
 ## Section 1. R Packages for GIS Analysis
- 
+
 We need to install GIS-R and basic data wrangling packages for R.
 
 ### Section 1.1 Installing the packages
+
 Here we go ahead and install the following GIS-R packages:
 
 ```{r echo= TRUE, error=TRUE}
@@ -87,13 +73,9 @@ Here we go ahead and install the following GIS-R packages:
 # install.packages("sp")
 ```
 
-__Other Useful Packages:__
-Also installed ggplot (included in tidyverse) and dplyr packages for quick stat 
-visualization and data wrangling.
+**Other Useful Packages:** Also installed ggplot (included in tidyverse) and dplyr packages for quick stat visualization and data wrangling.
 
-__Rtools Warning Messages:__
-While installing the packages, the terminal returned warning messages about not 
-having rtools package. 
+**Rtools Warning Messages:** While installing the packages, the terminal returned warning messages about not having rtools package.
 
 ```{r echo= TRUE, error=TRUE}
 #install.packages("rtools")
@@ -101,14 +83,8 @@ having rtools package.
 #install.packages("dplyr")
 
 ```
-These warning messages are annoying, have installed the rtools43 package to 
-prevent similar error messages from showing up in the future, the message pops
-up possibly due to the compatibility of different packages to our existing build
-of R. If the installation did not work, come back to this thread:
-[Fixing the RTools Error Message in R](https://www.youtube.com/watch?v=KsbTXYKrocQ)
-Note: * This happens only if we are trying to install packages built with C or 
-FORTRAN.
-** need to add the "C:\rtools43\usr\bin" to Path
+
+These warning messages are annoying, have installed the rtools43 package to prevent similar error messages from showing up in the future, the message pops up possibly due to the compatibility of different packages to our existing build of R. If the installation did not work, come back to this thread: [Fixing the RTools Error Message in R](https://www.youtube.com/watch?v=KsbTXYKrocQ) Note: \* This happens only if we are trying to install packages built with C or FORTRAN. \*\* need to add the "C:\rtools43\usr\bin" to Path
 
 ### Section 1.2 Loading the R libraries needed for this practice
 
@@ -122,59 +98,25 @@ FORTRAN.
 ```
 
 ## Section 2. Data Models
-The vector data model represents the world using points, lines and polygons. 
-These have discrete, well-defined borders, meaning that vector datasets usually 
-have a high level of precision (but not necessarily accuracy as we will see in 
-Section 2.5). The raster data model divides the surface up into cells of 
-constant size. Raster datasets are the basis of background images used in 
-web-mapping and have been a vital source of geographic data since the origins of 
-aerial photography and satellite-based remote sensing devices. Rasters aggregate 
-spatially specific features to a given resolution, meaning that they are 
-consistent over space and scalable (many worldwide raster datasets are available).
+
+The vector data model represents the world using points, lines and polygons. These have discrete, well-defined borders, meaning that vector datasets usually have a high level of precision (but not necessarily accuracy as we will see in Section 2.5). The raster data model divides the surface up into cells of constant size. Raster datasets are the basis of background images used in web-mapping and have been a vital source of geographic data since the origins of aerial photography and satellite-based remote sensing devices. Rasters aggregate spatially specific features to a given resolution, meaning that they are consistent over space and scalable (many worldwide raster datasets are available).
 
 Which to use? The answer likely depends on your domain of application:
 
-__Vector__ data tends to dominate the social sciences because human settlements tend 
-to have discrete borders.
+**Vector** data tends to dominate the social sciences because human settlements tend to have discrete borders.
 
-__Raster__ dominates many environmental sciences because of the reliance on remote 
-sensing data.
+**Raster** dominates many environmental sciences because of the reliance on remote sensing data.
 
-There is much overlap in some fields and raster and vector datasets can be used 
-together: ecologists and demographers, for example, commonly use both vector and
-raster data. Furthermore, it is possible to convert between the two forms. 
-Whether your work involves more use of vector or raster datasets, it 
-is worth understanding the underlying data model before using them, as discussed 
-in subsequent chapters. This book uses sf and terra packages to work with vector 
-data and raster datasets, respectively.
-
-
-
+There is much overlap in some fields and raster and vector datasets can be used together: ecologists and demographers, for example, commonly use both vector and raster data. Furthermore, it is possible to convert between the two forms. Whether your work involves more use of vector or raster datasets, it is worth understanding the underlying data model before using them, as discussed in subsequent chapters. This book uses sf and terra packages to work with vector data and raster datasets, respectively.
 
 ### Section 2.1 Vector Data
-The geographic vector data model is based on points located within a coordinate 
-reference system (CRS). Points can represent self-standing features (e.g., the l
-ocation of a bus stop) or they can be linked together to form more complex 
-geometries such as lines and polygons. Most point geometries contain only two 
-dimensions (3-dimensional CRSs contain an additional z value, typically 
-representing height above sea level).
 
-In this system London, for example, can be represented by the coordinates 
-c(-0.1, 51.5). This means that its location is -0.1 degrees east and 51.5 
-degrees north of the origin. The origin in this case is at 0 degrees longitude 
-(the Prime Meridian) and 0 degree latitude (the Equator) in a geographic 
-(‘lon/lat’) CRS . The same point could also be approximated in a projected CRS 
-with ‘Easting/Northing’ values of c(530000, 180000) in the British National 
-Grid, meaning that London is located 530 km East and 180 km North of the origin 
-of the CRS. This can be verified visually: slightly more than 5 ‘boxes’ — 
-square areas bounded by the gray grid lines 100 km in width — separate the 
-point representing London from the origin.
+The geographic vector data model is based on points located within a coordinate reference system (CRS). Points can represent self-standing features (e.g., the l ocation of a bus stop) or they can be linked together to form more complex geometries such as lines and polygons. Most point geometries contain only two dimensions (3-dimensional CRSs contain an additional z value, typically representing height above sea level).
 
-__Note:__
-The following message will appear:
-Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE
-when you load "sf", which shows the linkage of sf package to GEOS, GDAL, PROJ 
-libraries. (what version of each sf is referring to)
+In this system London, for example, can be represented by the coordinates c(-0.1, 51.5). This means that its location is -0.1 degrees east and 51.5 degrees north of the origin. The origin in this case is at 0 degrees longitude (the Prime Meridian) and 0 degree latitude (the Equator) in a geographic ('lon/lat') CRS . The same point could also be approximated in a projected CRS with 'Easting/Northing' values of c(530000, 180000) in the British National Grid, meaning that London is located 530 km East and 180 km North of the origin of the CRS. This can be verified visually: slightly more than 5 'boxes' --- square areas bounded by the gray grid lines 100 km in width --- separate the point representing London from the origin.
+
+**Note:** The following message will appear: Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE when you load "sf", which shows the linkage of sf package to GEOS, GDAL, PROJ libraries. (what version of each sf is referring to)
+
 ```{r echo= TRUE, error=TRUE}
 #library(sf)
 #class(world)
@@ -182,8 +124,8 @@ libraries. (what version of each sf is referring to)
 #plot(world)
 
 ```
-Some error messages appeared, installed the following dependency packages to help
-clear the errors.
+
+Some error messages appeared, installed the following dependency packages to help clear the errors.
 
 ```{r echo= TRUE, error=TRUE}
 # install.packages(c("cowplot","googleway", "ggplot2", "ggrepel",
@@ -192,7 +134,6 @@ clear the errors.
 # install.packages("e1071")
 
 ```
-
 
 Run the following code to open help on sf and sf1 packages:
 
@@ -224,30 +165,16 @@ After installing all necessary packages, re-run the world codes:
 
 ```
 
-sf provides classes for geographic vector data and a consistent command-line 
-interface to important low level libraries for geo-computation:
+sf provides classes for geographic vector data and a consistent command-line interface to important low level libraries for geo-computation:
 
-* GDAL, for reading, writing and manipulating a wide range of geographic data 
-formats, covered in Chapter 8
-* PROJ, a powerful library for coordinate system transformations, which underlies 
-the content covered in Chapter 7
-* GEOS, a planar geometry engine for operations such as calculating buffers and 
-centroids on data with a projected CRS, covered in Chapter 5
-* S2, a spherical geometry engine written in C++ developed by Google, via the s2
-package, covered in Section 2.2.9 below and in Chapter 7
-
+-   GDAL, for reading, writing and manipulating a wide range of geographic data formats, covered in Chapter 8
+-   PROJ, a powerful library for coordinate system transformations, which underlies the content covered in Chapter 7
+-   GEOS, a planar geometry engine for operations such as calculating buffers and centroids on data with a projected CRS, covered in Chapter 5
+-   S2, a spherical geometry engine written in C++ developed by Google, via the s2 package, covered in Section 2.2.9 below and in Chapter 7
 
 ### Section 2.2 Simple Features
 
-
-
-Simple features is an open standard developed and endorsed by the Open 
-Geospatial Consortium (OGC), a not-for-profit organization whose activities
-we will revisit in a later chapter (in Section 8.5). Simple Features is a 
-hierarchical data model that represents a wide range of geometry types. Of 18 
-geometry types supported by the specification, only 7 are used in the vast 
-majority of geographic research (see Figure 2.2); these core geometry types are 
-fully supported by the R package sf (Pebesma 2018).
+Simple features is an open standard developed and endorsed by the Open Geospatial Consortium (OGC), a not-for-profit organization whose activities we will revisit in a later chapter (in Section 8.5). Simple Features is a hierarchical data model that represents a wide range of geometry types. Of 18 geometry types supported by the specification, only 7 are used in the vast majority of geographic research (see Figure 2.2); these core geometry types are fully supported by the R package sf (Pebesma 2018).
 
 ```{r echo= TRUE, error=TRUE}
 
@@ -256,15 +183,12 @@ fully supported by the R package sf (Pebesma 2018).
 #vignette("sf1")          
 # an introduction to the package
 ```
+
 #### Sub-Section 2.2.1 More on SF packages
 
-Here we combine our previous code blocks, and add some more sf functions for 
-demo purposes. The following code blocks records and test the whol section 2.1 
+Here we combine our previous code blocks, and add some more sf functions for demo purposes. The following code blocks records and test the whol section 2.1
 
-We need to load the dataframe object 
-[world](https://cran.r-project.org/web/packages/spData/spData.pdf) from spData,
-rather than sf, loading fron sf with method `ne_countries` does not include the 
-columns that we need.
+We need to load the dataframe object [world](https://cran.r-project.org/web/packages/spData/spData.pdf) from spData, rather than sf, loading fron sf with method `ne_countries` does not include the columns that we need.
 
 use `sf::sf_use_s2(FALSE)` to switch off the spherical geometry (s2)
 
@@ -288,14 +212,8 @@ plot(world)
 summary(world["lifeExp"])
 
 ```
-Although we have only selected one variable for the summary() command, it also 
-outputs a report on the geometry. This demonstrates the ‘sticky’ behavior of the 
-geometry columns of sf objects, meaning the geometry is kept unless the user 
-deliberately removes them, as we’ll see in Section 3.2. The result provides a 
-quick summary of both the non-spatial and spatial data contained in world: the 
-mean average life expectancy is 71 years (ranging from less than 51 to more than 
-83 years with a median of 73 years) across all countries.
 
+Although we have only selected one variable for the summary() command, it also outputs a report on the geometry. This demonstrates the 'sticky' behavior of the geometry columns of sf objects, meaning the geometry is kept unless the user deliberately removes them, as we'll see in Section 3.2. The result provides a quick summary of both the non-spatial and spatial data contained in world: the mean average life expectancy is 71 years (ranging from less than 51 to more than 83 years with a median of 73 years) across all countries.
 
 ```{r echo= TRUE, error=TRUE}
 
@@ -306,39 +224,25 @@ summary(world["lifeExp"])
 
 SF objects are like a data frame for spatial data. They are easy to subset.
 
-
-The code below shows how to returen an object containing only the first 2 rows 
-and first three columns of the object 'world' which we have defined previously.
-The output includes geo metadata: Geometry type, Dimension, Bounding box and 
-coordinate reference system information on the line beginning Geodetic CRS CRS 
-information.
-It also contains a grometry column named geom here.
+The code below shows how to returen an object containing only the first 2 rows and first three columns of the object 'world' which we have defined previously. The output includes geo metadata: Geometry type, Dimension, Bounding box and coordinate reference system information on the line beginning Geodetic CRS CRS information. It also contains a grometry column named geom here.
 
 ```{r echo= TRUE, error=TRUE}
 world_mini = world[1:2, 1:3]
 world_mini
 ```
-Simple features is a widely supported data model that underlies data structures 
-in many GIS applications including QGIS and PostGIS. A major advantage of this 
-is that using the data model ensures your work is cross-transferable to other 
-set-ups, for example importing from and exporting to spatial databases.
 
-A more specific question from an R perspective is “why use the sf package when 
-sp is already tried and tested”? There are many reasons (linked to the advantages 
-of the simple features model):
+Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.
 
-* Fast reading and writing of data
-* Enhanced plotting performance
-* sf objects can be treated as data frames in most operations
-* sf function names are relatively consistent and intuitive (all begin with st_)
-* sf functions can be combined with the |> operator and works well with the 
-tidyverse collection of R packages.
-* sf’s support for tidyverse packages is exemplified by read_sf(), a function for 
-importing geographic vector data covered in detail [here](https://geocompr.robinlovelace.net/read-write.html#iovec) 
+A more specific question from an R perspective is "why use the sf package when sp is already tried and tested"? There are many reasons (linked to the advantages of the simple features model):
 
-Unlike the function st_read(), which returns attributes stored in a base R 
-data.frame (and which emits verbose messages, not shown in the code chunk below), 
-read_sf() silently returns data as a tidyverse [tibble](https://tibble.tidyverse.org/). 
+-   Fast reading and writing of data
+-   Enhanced plotting performance
+-   sf objects can be treated as data frames in most operations
+-   sf function names are relatively consistent and intuitive (all begin with st\_)
+-   sf functions can be combined with the \|\> operator and works well with the tidyverse collection of R packages.
+-   sf's support for tidyverse packages is exemplified by read_sf(), a function for importing geographic vector data covered in detail [here](https://geocompr.robinlovelace.net/read-write.html#iovec)
+
+Unlike the function st_read(), which returns attributes stored in a base R data.frame (and which emits verbose messages, not shown in the code chunk below), read_sf() silently returns data as a tidyverse [tibble](https://tibble.tidyverse.org/).
 
 ```{r echo= TRUE, error=TRUE}
 world_dfr = st_read(system.file("shapes/world.shp", package = "spData"))
@@ -356,27 +260,18 @@ class(world_tbl)
 #> [1] "sf"         "tbl_df"     "tbl"        "data.frame"
 ```
 
-
-__Note:__ GDAL information: Provides bindings to the 'Geospatial' Data Abstraction
-Library ('GDAL') (>= 1.11.4) and access to projection/transformation operations 
-from the 'PROJ' library. Please note that 'rgdal' will be retired by the end of 
-2023, plan transition to sf/stars/'terra' functions using 'GDAL' and 'PROJ' at 
-your earliest convenience.
-
-
+**Note:** GDAL information: Provides bindings to the 'Geospatial' Data Abstraction Library ('GDAL') (\>= 1.11.4) and access to projection/transformation operations from the 'PROJ' library. Please note that 'rgdal' will be retired by the end of 2023, plan transition to sf/stars/'terra' functions using 'GDAL' and 'PROJ' at your earliest convenience.
 
 #### Sub-Section 2.2.4 SF Geometry Tpyes
-
 
 ```{r echo= TRUE, error=TRUE}
 world$geom
 ```
 
-
 #### Sub-Section 2.2.5 SF Basic Map-Making
 
-For compatibility purposes, we need to also use the spatial package, __"sp"__
-The code below, shows how we can convert sp objects to sf ones and vice versa:
+For compatibility purposes, we need to also use the spatial package, **"sp"** The code below, shows how we can convert sp objects to sf ones and vice versa:
+
 ```{r echo= TRUE, error=TRUE}
 library(sp)
 library(sf)
@@ -389,17 +284,14 @@ world_sf = st_as_sf(world_sp)
 ```
 
 Let's check out the differences between sp and sf objects
+
 ```{r echo= TRUE, error=TRUE}
 # from an sf object to sp
 world_sp[1,1]
 world_sf[1,1]       
 ```
-Basic maps are created in sf with plot(). By default this creates a multi-panel 
-plot, one sub-plot for each variable of the object, as illustrated in the 
-left-hand panel in Figure 2.4. A legend or ‘key’ with a continuous color is 
-produced if the object to be plotted has a single variable (see the right-hand 
-panel). Colors can also be set with col =, although this will not create a 
-continuous palette or a legend.
+
+Basic maps are created in sf with plot(). By default this creates a multi-panel plot, one sub-plot for each variable of the object, as illustrated in the left-hand panel in Figure 2.4. A legend or 'key' with a continuous color is produced if the object to be plotted has a single variable (see the right-hand panel). Colors can also be set with col =, although this will not create a continuous palette or a legend.
 
 ```{r echo= TRUE, error=TRUE}
 
@@ -409,11 +301,11 @@ plot(world[8])
 plot(world["pop"])
 
 ```
-Code to filters all Asian countries and combine them into a single feature, and
-then plot them 
 
-__note:__ The first plot must only have one facet for add = TRUE to work. If the 
-first plot has a key, reset = FALSE must be used (result not shown).
+Code to filters all Asian countries and combine them into a single feature, and then plot them
+
+**note:** The first plot must only have one facet for add = TRUE to work. If the first plot has a key, reset = FALSE must be used (result not shown).
+
 ```{r echo= TRUE, error=TRUE}
 
 library(sp)
@@ -425,6 +317,7 @@ plot(world["pop"], reset = FALSE)
 plot(asia, add = TRUE, col = "red")
 
 ```
+
 ```{r echo= TRUE, error=TRUE}
 plot(world["continent"], reset = FALSE)
 cex = sqrt(world$pop) / 10000
@@ -433,38 +326,37 @@ plot(st_geometry(world_cents), add = TRUE, cex = cex)
 
 ```
 
-
-
-
 ```{r echo= TRUE, error=TRUE}
 chn= world[world$name_long == "Japan", ]
 plot(st_geometry(chn), expandBB = c(0, 0.2, 0.1, 1), col = "cyan", lwd = 3)
 plot(st_geometry(world_asia), add = TRUE)
+
 ```
-
-
 
 
 
 #### Sub-Section 2.2.6
 
+```{r echo= TRUE, error=TRUE}
 
 
+```
 
+### Section 2.3 Raster Data
+
+R package terra is designed to work with raster data.
 
 ```{r echo= TRUE, error=TRUE}
 
 
 ```
 
-### Section 2.3
+#### Section 2.3.1 Raster Data
 
 ```{r echo= TRUE, error=TRUE}
 
 
 ```
-
-
 
 ## Section 3
 
