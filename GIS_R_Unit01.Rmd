@@ -1,7 +1,9 @@
 ------------------------------------------------------------------------
-
-title: R_GIS_01 author: Derek Ding date: "`r Sys.Date()`" output: html_document: code_folding: show
-
+title: R_GIS_01 
+author: Derek Ding 
+date: "`r Sys.Date()`" 
+output: html_document
+code_folding: show
 ------------------------------------------------------------------------
 
 # Learning Notes for R_GIS Chapter 1
@@ -359,6 +361,7 @@ R package terra is designed to work with raster data.
 ```
 
 ## Section 3
+
 
 ```{r echo= TRUE, error=TRUE}
 
