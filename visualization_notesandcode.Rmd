@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------
-title: R_GIS_01 
+title: R Visualization Summary
 author: Derek Ding 
 date: "`r Sys.Date()`" 
 output: html_document
@@ -12,6 +12,7 @@ __some notes on r scripting:__
 ctrl + shift + m: new pipe.
 ctrl + shift + c: comment out selection.
 ctrl + shift + r:new section in script.
+ctrl + shift + enter: run current chunk
 
 __some notes on r markdown:__
 ctrl + shift + 
@@ -23,7 +24,13 @@ ctrl + shift +
 EMBL Keynote Lecture - Data visualization and data science, Hadley Wickham
 
 Orthogonality of data:
+Here in the video, Hadley is referring to a more "decoupled" column-relations,
+in a properly tidied up data frame.
+Here is a more statistical explanation from [stat know how to dot com](https://www.statisticshowto.com/orthogonality/#:~:text=What%20is%20Orthogonality%20in%20Statistics,that%20model%20is%20non%2Dorthogonal.):
+Simply put, orthogonality means “uncorrelated.” An orthogonal model means that all independent variables in that model are uncorrelated. If one or more independent variables are correlated, then that model is non-orthogonal.
+The term “orthogonal” usually only applies to classic ANOVA. An orthogonal ANOVA has all categorical independent variables and each cell in a two-way table has the same number of observations (called a balanced design). On the other hand, general linear models are never orthogonal, as at least one independent variable is not categorical (GLMs have one continuous variable).
 
+Will try to reproduce the gapminder moving bubble chart here with R, the code are mainly located in gapminder_reproduce.r
 
 Display first 10 rows of the gapminder dataset:
 ```{r echo= TRUE, error=TRUE}
@@ -39,6 +46,17 @@ Quantitative qualitative,
 
 
 
+```{r echo= TRUE, error=TRUE}
+
+
+```
+
+
+
+```{r echo= TRUE, error=TRUE}
+
+
+```
 
 
 

@@ -5,6 +5,8 @@ library("ggplot2")
 library(gapminder)
 # gapminder01 -------------------------------------------------------------
 
+
+
 # display first 10 rows
 gapminder
 
@@ -17,3 +19,4 @@ gapminder %>%
   group_split(year)
 #
 plots <- map(by_year,~ gap_plot(.x))
+
