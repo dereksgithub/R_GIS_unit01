@@ -1,4 +1,4 @@
-# This is a short script for R basics, part 1
+# This is a short script for R GIS basics, part 1
 # Note for VCS ------------------------------------------------------------
 # push: git push -u origin main
 # 

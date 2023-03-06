@@ -1,9 +1,204 @@
-Quantitative qualitative, 
+------------------------------------------------------------------------
+title: R_Basics
+author: Derek Ding 
+date: "`r Sys.Date()`" 
+output: html_document
+code_folding: show
+------------------------------------------------------------------------
+## 1. Functions
+
+__Key Points:__
+
+__1.1__ Define a function using name <- function(...args...) {...body...}.
+
+__1.2__ Call a function using name(...values...).
+
+__1.3__ R looks for variables in the current stack frame before looking for them at the top level.
+
+__1.4__ Use help(thing) to view help for something.
+
+__1.5__ Put comments at the beginning of functions to provide help for that function.
+
+__1.6__ Annotate your code!
+
+__1.7__ Specify default values for arguments when defining a function using name = value in the argument list.
+
+__1.8__ Arguments can be passed by matching based on name, by position, or by omitting them (in which case the default value is used).
 
 
-
+__1.9__ Add ? and ?? before the function to search its documentations. 
 
 ```{r echo= TRUE, error=TRUE}
 
+example.func <- function(arg_1, arg_2) {
+   result.sum = arg_1 + arg_2
+  return(result.sum)
+}
+
+example.func(2,5)
+
+#?example.func
+#??example.func
 
 ```
+
+
+
+## 2. Arguments
+Functions like Sys.Date() takes no arguments, 
+
+Some like factorial(4) takes a single argument.
+
+Others takes multiple arguments, like paste(). In which case, sep = " " is the
+default value, unless otherwise specify. sep here is an optional argument.
+
+args(function): show what the arguments are.
+
+Best practice is to specify clear, the value for each arg in R:
+example.func(arg_1 = 2, arg_2 = 9)
+
+```{r echo= TRUE, error=TRUE}
+Sys.Date()
+factorial(4)
+paste("Hello", "World!", sep=" ")
+paste("Hello", "World!")
+paste("Hello", "World!", "World!", sep=" +_+_+_+_+_:D ")
+
+args(example.func)
+
+example.func <- function(arg_1, arg_2 = 8) {
+   result.sum = arg_1 + arg_2
+  return(result.sum)
+}
+
+example.func(arg_1 = 2)
+example.func(arg_1 = 2, arg_2 = 9)
+example.func(3,9)
+
+```
+
+## 3. Obeject
+Storing the values.
+
+```{r echo= TRUE, error=TRUE}
+num1 <- log(8)
+num2 <- 0.5
+
+num1
+num2
+example.func(num1, num2)
+```
+
+## 4. Vectors
+
+r stores values in vectors, initialize a vector with c()
+
+What does Rnorm in R do?
+rnorm is the R function that simulates random variates having a specified normal 
+distribution. As with pnorm , qnorm , and dnorm , optional arguments specify the 
+mean and standard deviation of the distribution.
+
+```{r echo= TRUE, error=TRUE}
+rnorm(18)
+```
+
+For example, here pmax function goes from vec1(1) vs. vec2(1), and vec1(2) vs. vec2(2), and so on.
+That is the general mechanics of R multiple vectors functions.
+```{r echo= TRUE, error=TRUE}
+sample.vector <- c(1, 2, 3, 4, 15)
+factorial(sample.vector)
+mean(sample.vector)
+sample.vector2 <- c(6, 7, 8, 9, 10)
+pmax(sample.vector, sample.vector2)
+```
+
+
+## 5. Data Types
+R recognizes 6 different types of data and most of the default functions can 
+operate on different types of data pretty intuitively.
+-   logical: **TRUE** and **FALSE**
+-   numeric: 3, 157.5
+-   integer: 1L, 6L...
+-   complex: 6 + 5i complex numbers with real and imaginary parts.
+-   character: "a", "apple"
+-   raw: Coercion to raw treats the input values as representing small (decimal) 
+integers, so the input is first coerced to integer, and then values which are 
+outside the range [0 ... 255] or are NA are set to 0 (the nul byte).
+
+as.raw and is.raw
+
+```{r echo= TRUE, error=TRUE}
+num.vec = c(1, 2, 7)
+str.vec = c("apple","orange","pear")
+
+num.vec + 5
+nchar(str.vec)
+
+# numeric vectors:
+typeof(num.vec)
+
+# characters vectors:
+typeof(str.vec)
+
+# integer vectors:
+typeof(c(1L,11L,111L,22L,9L))
+
+# logical vectors
+typeof(c(TRUE, FALSE, TRUE))
+
+# complex
+typeof(c(6+5i, 7+8i, 0+9i))
+
+# raw
+typeof(as.raw(40))
+
+# by default, R will collapse multiple types into char type if specified in one
+# vector
+typeof(c(1, FALSE, "hello"))
+
+# more on raw
+as.raw(40)
+charToRaw("A9") # seems to be more of a ASCII converting function
+
+```
+
+
+## 6. Lists
+In addition to vectors, R comes with another data-structure: list.
+List is a vector of vectors, each vector stores a single type of data, but a list
+can store a various types of data, each element in a list is another vector on
+its own.
+
+You can also name each element and use the dollar sign to call each element by its
+name.
+
+```{r echo= TRUE, error=TRUE}
+a_list <- list(
+  1:5, "apple", c("apple","orange","pear"), TRUE)
+a_list
+
+a.list.2 <- list(
+  numbers=1:9, # automatically initialized as int
+  fruits = c("apple","orange","pear"),
+  logicals = c(TRUE, TRUE, FALSE)
+  )
+
+a.list.2
+typeof(a.list.2)
+a.list.2$fruits
+typeof(a.list.2$logicals)
+typeof(a.list.2$numbers)
+typeof(a.list.2$fruits)
+```
+
+## 7. Packages
+
+Base R vs. Packages.
+
+e.g. ggplot function comes with ggplot2 package, we won't be able to use ggplot
+if we do not load the ggplott2 package.
+
+```{r echo= TRUE, error=TRUE}
+install.packages(c("ggplot2", "forecast"))
+```
+
